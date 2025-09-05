@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Music, Heart, Brain, Palette, Users, Leaf, BookOpen } from 'lucide-react';
+import { Music, Heart, Brain, Palette, Users, Leaf, BookOpen, TrendingUp, Clock, Brush } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import QuizGame from './QuizGame';
 import BreathingGame from './BreathingGame';
@@ -7,6 +7,10 @@ import MemoryGame from './MemoryGame';
 import WordGame from './WordGame';
 import GratitudeGame from './GratitudeGame';
 import RelaxationGame from './RelaxationGame';
+import MoodTracker from './MoodTracker';
+import MeditationTimer from './MeditationTimer';
+import ColorTherapy from './ColorTherapy';
+import CouplesActivity from './CouplesActivity';
 
 const GameHub = () => {
   const [activeGame, setActiveGame] = useState(null);
@@ -71,6 +75,46 @@ const GameHub = () => {
       description: 'Immerse yourself in calming nature sounds. Perfect for relaxation and meditation.',
       benefits: ['Deep relaxation', 'Stress relief', 'Better sleep'],
       component: RelaxationGame
+    },
+    {
+      id: 'mood-tracker',
+      title: 'Mood Tracker',
+      subtitle: 'Daily emotional check-ins',
+      icon: TrendingUp,
+      color: '#f56565',
+      description: 'Track your daily mood and emotions to identify patterns and support your mental wellbeing.',
+      benefits: ['Self-awareness', 'Pattern recognition', 'Emotional wellness'],
+      component: MoodTracker
+    },
+    {
+      id: 'meditation',
+      title: 'Meditation Timer',
+      subtitle: 'Guided mindfulness sessions',
+      icon: Clock,
+      color: '#9f7aea',
+      description: 'Practice different types of meditation with guided sessions and peaceful timers.',
+      benefits: ['Mindfulness', 'Stress reduction', 'Inner peace'],
+      component: MeditationTimer
+    },
+    {
+      id: 'color-therapy',
+      title: 'Color Therapy',
+      subtitle: 'Art and color healing',
+      icon: Brush,
+      color: '#ed8936',
+      description: 'Explore color psychology and express yourself through therapeutic art activities.',
+      benefits: ['Creative expression', 'Emotional release', 'Color healing'],
+      component: ColorTherapy
+    },
+    {
+      id: 'couples',
+      title: 'Couples Activities',
+      subtitle: 'Relationship wellness together',
+      icon: Users,
+      color: '#ed64a6',
+      description: 'Strengthen your relationship with guided activities for communication and connection.',
+      benefits: ['Better communication', 'Stronger bond', 'Shared wellness'],
+      component: CouplesActivity
     }
   ];
 

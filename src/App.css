@@ -1708,3 +1708,1228 @@ body {
     height: 100px;
   }
 }
+
+/* Mood Tracker Styles */
+.mood-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.mood-tracker,
+.mood-complete {
+  background: white;
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.mood-icon {
+  color: #f56565;
+  margin-bottom: 1rem;
+}
+
+.mood-selector {
+  margin: 2rem 0;
+}
+
+.mood-scale {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.mood-level {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0.5rem;
+  border: 2px solid;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mood-emoji {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.mood-number {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.mood-label {
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.current-selection {
+  text-align: center;
+  margin: 2rem 0;
+  padding: 1rem;
+  background: #f8f9ff;
+  border-radius: 12px;
+}
+
+.selected-emoji {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.mood-factors {
+  margin: 2rem 0;
+}
+
+.factors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.factor-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.factor-button.selected {
+  border-color: #f56565;
+  background: #fff5f5;
+  color: #c53030;
+}
+
+.factor-icon {
+  font-size: 1.2rem;
+}
+
+.mood-note {
+  margin: 2rem 0;
+}
+
+.mood-textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.mood-textarea:focus {
+  outline: none;
+  border-color: #f56565;
+}
+
+.save-mood-button {
+  background: #f56565;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.mood-history-preview {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid #f1f5f9;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f8f9ff;
+  border-radius: 8px;
+}
+
+.history-emoji {
+  font-size: 1.5rem;
+}
+
+.history-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.history-date {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.history-mood {
+  font-weight: 500;
+}
+
+.history-note {
+  font-style: italic;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.mood-insights {
+  margin: 2rem 0;
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.insight-card {
+  background: #f8f9ff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.insight-card span {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.insight-card strong {
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.trend-improving {
+  color: #48bb78;
+}
+
+.trend-declining {
+  color: #f56565;
+}
+
+.trend-stable {
+  color: #4299e1;
+}
+
+.mood-tips {
+  background: #f0fff4;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.mood-tips h4 {
+  color: #2f855a;
+  margin-bottom: 1rem;
+}
+
+.mood-tips ul {
+  list-style: none;
+}
+
+.mood-tips li {
+  padding: 0.5rem 0;
+  color: #2f855a;
+}
+
+.new-mood-button {
+  background: #f56565;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Meditation Timer Styles */
+.meditation-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.meditation-setup,
+.meditation-complete {
+  background: white;
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.meditation-icon {
+  color: #9f7aea;
+  margin-bottom: 1rem;
+}
+
+.session-type-selection {
+  margin: 2rem 0;
+}
+
+.session-types {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.session-type-button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 2px solid;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.session-icon {
+  font-size: 1.5rem;
+}
+
+.session-info h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.session-info p {
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+.duration-selection {
+  margin: 2rem 0;
+}
+
+.duration-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.duration-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.duration-option.active {
+  border-color: #9f7aea;
+  background: #9f7aea;
+  color: white;
+}
+
+.duration-time {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.duration-desc {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.preparation-guidance {
+  margin: 2rem 0;
+}
+
+.guidance-card {
+  background: #f8f9ff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid #9f7aea;
+}
+
+.guidance-card ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.guidance-card li {
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.start-meditation-button {
+  background: #9f7aea;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.meditation-session {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.session-header {
+  margin-bottom: 2rem;
+}
+
+.session-header h3 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.progress-circle {
+  position: relative;
+  display: inline-block;
+}
+
+.timer-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.time-left {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.breathing-visual {
+  margin: 3rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.breathing-orb {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.3);
+}
+
+.meditation-guidance {
+  margin: 2rem 0;
+  background: #f8f9ff;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.guidance-text {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.meditation-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.control-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.control-button.primary {
+  background: #9f7aea;
+  color: white;
+  border: none;
+}
+
+.control-button.secondary {
+  background: #f1f5f9;
+  color: #333;
+  border: 2px solid #e2e8f0;
+}
+
+.completion-bell {
+  margin-bottom: 2rem;
+}
+
+.completion-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.stat-item {
+  background: #f8f9ff;
+  padding: 1rem;
+  border-radius: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.completion-emoji {
+  font-size: 24px;
+}
+
+.meditation-benefits {
+  background: #f0fff4;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.meditation-benefits h4 {
+  color: #2f855a;
+  margin-bottom: 1rem;
+}
+
+.meditation-benefits ul {
+  list-style: none;
+}
+
+.meditation-benefits li {
+  padding: 0.5rem 0;
+  color: #2f855a;
+}
+
+.new-session-button {
+  background: #9f7aea;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+/* Color Therapy Styles */
+.color-therapy-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.color-mood-test,
+.color-results,
+.color-canvas-mode {
+  background: white;
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.therapy-icon {
+  color: #ed8936;
+  margin-bottom: 1rem;
+}
+
+.mode-selector {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.mode-button {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mode-button.active {
+  border-color: #ed8936;
+  background: #ed8936;
+  color: white;
+}
+
+.color-selection {
+  margin: 2rem 0;
+}
+
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.therapy-color {
+  position: relative;
+  min-height: 120px;
+  border: 3px solid transparent;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: end;
+}
+
+.therapy-color.selected {
+  border-color: #fff;
+  box-shadow: 0 0 0 3px #ed8936;
+  transform: translateY(-5px);
+}
+
+.color-info {
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 1rem;
+  border-radius: 0 0 9px 9px;
+  width: 100%;
+}
+
+.color-name {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.color-meaning {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.selection-indicator {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 30px;
+  height: 30px;
+  background: #ed8936;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.analyze-button {
+  background: #ed8936;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.color-therapy-info {
+  background: #fff8e1;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.color-therapy-info h4 {
+  color: #f57c00;
+  margin-bottom: 0.5rem;
+}
+
+.selected-colors-display {
+  margin: 2rem 0;
+}
+
+.color-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.selected-color-swatch {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.mood-card {
+  background: #f8f9ff;
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 4px solid #ed8936;
+  margin: 1rem 0;
+}
+
+.meanings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.meaning-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f8f9ff;
+  border-radius: 8px;
+}
+
+.meaning-color {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.meaning-text strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #333;
+}
+
+.meaning-text span {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.therapy-suggestions {
+  background: #f0fff4;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.therapy-suggestions h4 {
+  color: #2f855a;
+  margin-bottom: 1rem;
+}
+
+.therapy-suggestions ul {
+  list-style: none;
+}
+
+.therapy-suggestions li {
+  padding: 0.5rem 0;
+  color: #2f855a;
+}
+
+.try-again-button {
+  background: #ed8936;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+/* Canvas Mode Styles */
+.canvas-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.canvas-icon {
+  color: #ed8936;
+  margin-bottom: 1rem;
+}
+
+.canvas-tools {
+  margin: 2rem 0;
+}
+
+.color-palette {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.palette-color {
+  width: 40px;
+  height: 40px;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.palette-color.active {
+  border-color: #333;
+  transform: scale(1.1);
+}
+
+.pixel-canvas {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 2px;
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #f1f5f9;
+  border-radius: 12px;
+}
+
+.canvas-pixel {
+  aspect-ratio: 1;
+  border: 1px solid;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.canvas-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.creative-benefits {
+  background: #f0fff4;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.creative-benefits h4 {
+  color: #2f855a;
+  margin-bottom: 1rem;
+}
+
+.creative-benefits ul {
+  list-style: none;
+}
+
+.creative-benefits li {
+  padding: 0.5rem 0;
+  color: #2f855a;
+}
+
+/* Couples Activity Styles */
+.couples-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.couples-main,
+.activity-session {
+  background: white;
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.couples-icon {
+  color: #ed64a6;
+  margin-bottom: 1rem;
+}
+
+.activity-type-selector {
+  margin: 2rem 0;
+}
+
+.type-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.type-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border: 2px solid;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quick-start {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.random-activity-button {
+  background: linear-gradient(135deg, #ed64a6, #f093fb);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.activities-list {
+  margin: 2rem 0;
+}
+
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.activity-card {
+  background: white;
+  border: 2px solid #f1f5f9;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.activity-card:hover {
+  border-color: #ed64a6;
+}
+
+.card-content {
+  padding: 1.5rem;
+}
+
+.activity-card h4 {
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.activity-description {
+  color: #666;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.activity-details {
+  margin: 1rem 0;
+}
+
+.duration {
+  background: #f8f9ff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #667eea;
+}
+
+.activity-benefits-preview {
+  margin: 1rem 0;
+}
+
+.activity-benefits-preview strong {
+  color: #333;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.activity-benefits-preview ul {
+  list-style: none;
+  padding: 0;
+}
+
+.activity-benefits-preview li {
+  color: #555;
+  font-size: 0.9rem;
+  padding: 0.1rem 0;
+}
+
+.start-activity-button {
+  background: #ed64a6;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.activity-header {
+  margin-bottom: 2rem;
+}
+
+.activity-title h2 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.activity-meta {
+  margin-top: 1rem;
+}
+
+.activity-instructions {
+  margin: 2rem 0;
+}
+
+.instructions-list {
+  padding-left: 1.5rem;
+  line-height: 1.6;
+}
+
+.instructions-list li {
+  margin-bottom: 0.75rem;
+  color: #555;
+}
+
+.activity-benefits {
+  background: #fff5f8;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.activity-benefits h4 {
+  color: #be185d;
+  margin-bottom: 1rem;
+}
+
+.benefits-list {
+  list-style: none;
+}
+
+.benefits-list li {
+  padding: 0.25rem 0;
+  color: #be185d;
+}
+
+.reflection-section {
+  margin: 2rem 0;
+  background: #f8f9ff;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.reflection-inputs {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.reflection-input label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.reflection-input textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.reflection-input textarea:focus {
+  outline: none;
+  border-color: #ed64a6;
+}
+
+.activity-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.complete-button {
+  background: #ed64a6;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.back-button.secondary {
+  background: #f1f5f9;
+  color: #333;
+  border: 2px solid #e2e8f0;
+}
+
+.activity-history {
+  margin: 3rem 0;
+  padding-top: 2rem;
+  border-top: 2px solid #f1f5f9;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.history-item {
+  background: #f8f9ff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #ed64a6;
+}
+
+.history-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.completion-date {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.history-reflections {
+  margin-top: 1rem;
+}
+
+.history-reflections p {
+  margin: 0.5rem 0;
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.couples-benefits {
+  background: #fff0f5;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.couples-benefits h4 {
+  color: #be185d;
+  margin-bottom: 1rem;
+}
+
+.couples-benefits ul {
+  list-style: none;
+}
+
+.couples-benefits li {
+  padding: 0.5rem 0;
+  color: #be185d;
+}
+
+/* Additional responsive updates */
+@media (max-width: 768px) {
+  .mood-scale {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  
+  .factors-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .insights-grid,
+  .completion-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .session-types {
+    grid-template-columns: 1fr;
+  }
+  
+  .duration-options {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .color-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .type-buttons {
+    flex-direction: column;
+  }
+  
+  .activities-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .activity-controls {
+    flex-direction: column;
+  }
+}
