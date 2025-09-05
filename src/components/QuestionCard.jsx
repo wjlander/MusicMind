@@ -60,8 +60,12 @@ const QuestionCard = ({ question, onAnswer, onPlayPreview, isPlaying, onTogglePl
       {/* Album Art */}
       <div className="album-art-container">
         <img 
-          src={question.track.album.images[1]?.url || question.track.album.images[0]?.url}
-          alt={`${question.track.album.name} cover`}
+          src={
+            question.track.album?.images?.[1]?.url || 
+            question.track.album?.images?.[0]?.url || 
+            'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjZjNmNGY2Ii8+CjxwYXRoIGQ9Ik01MCA3NUMyOC4zNSA3NSAxMSA1Ny42NSAxMSA1MEMxMSA0Mi4zNSAyOC4zNSAyNSA1MCAyNUM3MS42NSAyNSA4OSA0Mi4zNSA4OSA1MEM4OSA1Ny42NSA3MS42NSA3NSA1MCA3NVoiIGZpbGw9IiNkMWQ1ZGIiLz4KPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNSIgZmlsbD0iIzkxOTdhMCIvPgo8L3N2Zz4K'
+          }
+          alt={`${question.track.album?.name || 'Unknown Album'} cover`}
           className="album-art"
         />
         

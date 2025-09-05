@@ -1,12 +1,15 @@
 import { useState } from 'react'
+import { ThemeProvider } from './contexts/ThemeContext'
 import GameHub from './components/GameHub'
 import './App.css'
 
 function App() {
   return (
-    <div className="app">
-      <GameHub />
-    </div>
+    <ThemeProvider>
+      <div className="app">
+        <GameHub />
+      </div>
+    </ThemeProvider>
   )
 }
 

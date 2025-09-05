@@ -14,18 +14,28 @@ class iTunesService {
 
       const data = await response.json();
       
-      // Convert iTunes format to match Spotify-like structure
+      // Convert iTunes format to match standard structure
       return data.results
         .filter(track => track.previewUrl && track.trackName && track.artistName)
         .map(track => ({
           id: track.trackId,
           name: track.trackName,
           artists: [{ name: track.artistName }],
-          album: { name: track.collectionName || track.trackName },
+          album: { 
+            name: track.collectionName || track.trackName,
+            images: [
+              { url: track.artworkUrl100 || track.artworkUrl60 || track.artworkUrl30 },
+              { url: track.artworkUrl60 || track.artworkUrl100 || track.artworkUrl30 }
+            ]
+          },
           preview_url: track.previewUrl,
+          duration: track.trackTimeMillis ? Math.round(track.trackTimeMillis / 1000) : 30,
           external_urls: {
             itunes: track.trackViewUrl
-          }
+          },
+          source: 'itunes',
+          popularity: track.trackPrice ? Math.round(track.trackPrice * 10) : 50, // Use price as popularity indicator
+          release_date: track.releaseDate
         }));
     } catch (error) {
       console.error('Error searching iTunes:', error);
