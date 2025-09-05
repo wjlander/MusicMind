@@ -50,11 +50,23 @@ const QuizGame = () => {
       
       if (settings.decade) {
         tracks = await spotifyService.getTracksByDecade(parseInt(settings.decade), 50);
+        // Fallback if decade search fails
+        if (tracks.length === 0) {
+          tracks = await spotifyService.searchTracks(`${settings.decade}s hits`, 50);
+        }
       } else if (settings.genre) {
         tracks = await spotifyService.getRecommendations([settings.genre], 50);
+        // Fallback if genre recommendations fail
+        if (tracks.length === 0) {
+          tracks = await spotifyService.searchTracks(`${settings.genre} music`, 50);
+        }
       } else {
         // Get popular tracks
         tracks = await spotifyService.searchTracks('year:2020-2024', 50);
+        // Fallback to general popular search
+        if (tracks.length === 0) {
+          tracks = await spotifyService.searchTracks('popular hits', 50);
+        }
       }
 
       if (tracks.length === 0) {
@@ -64,12 +76,17 @@ const QuizGame = () => {
       // Filter tracks with preview URLs
       const tracksWithPreviews = tracks.filter(track => track.preview_url);
       
-      if (tracksWithPreviews.length < 10) {
-        throw new Error('Not enough tracks with audio previews available');
+      console.log(`Found ${tracks.length} tracks, ${tracksWithPreviews.length} with previews`);
+      
+      // Be more flexible with the number of tracks - allow as few as 5 tracks for a quiz
+      const minTracks = Math.min(5, tracksWithPreviews.length);
+      if (tracksWithPreviews.length === 0) {
+        throw new Error('No tracks with audio previews found for the selected criteria');
       }
 
-      // Shuffle and take first 10
-      const shuffledTracks = tracksWithPreviews.sort(() => Math.random() - 0.5).slice(0, 10);
+      // Shuffle and take available tracks (minimum 5, maximum 10)
+      const numQuestions = Math.min(10, Math.max(minTracks, tracksWithPreviews.length));
+      const shuffledTracks = tracksWithPreviews.sort(() => Math.random() - 0.5).slice(0, numQuestions);
       
       const generatedQuestions = shuffledTracks.map((track, index) => {
         const correctAnswer = getCorrectAnswer(track, settings.gameMode);
