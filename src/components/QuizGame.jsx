@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Play, Pause, RotateCcw, Trophy, Music } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import spotifyService from '../services/spotifyService';
+import itunesService from '../services/itunesService';
 import QuestionCard from './QuestionCard';
 import ScoreBoard from './ScoreBoard';
 import GameSettings from './GameSettings';
@@ -34,11 +35,12 @@ const QuizGame = () => {
 
   const loadGenres = async () => {
     try {
-      const genres = await spotifyService.getGenreSeeds();
+      // Use iTunes available genres (no API call needed)
+      const genres = itunesService.getAvailableGenres();
       setAvailableGenres(genres);
     } catch (error) {
       console.error('Failed to load genres:', error);
-      // Use fallback genres if API fails
+      // Use fallback genres if something goes wrong
       setAvailableGenres(['pop', 'rock', 'hip-hop', 'electronic', 'country', 'jazz', 'classical', 'r-n-b']);
     }
   };
@@ -48,38 +50,32 @@ const QuizGame = () => {
     try {
       let tracks = [];
       
-      // Try multiple search strategies to find tracks with previews
-      const searchStrategies = [];
+      // Try iTunes first (more reliable previews), then fallback to Spotify
+      console.log('Trying iTunes Search API first...');
       
       if (settings.decade) {
-        searchStrategies.push(
-          () => spotifyService.searchTracks(`${settings.decade}s top hits popular`, 50),
-          () => spotifyService.searchTracks(`${settings.decade}s classic rock pop`, 50),
-          () => spotifyService.searchTracks(`${settings.decade}s greatest hits`, 50)
-        );
+        tracks = await itunesService.getTracksByDecade(parseInt(settings.decade), 50);
       } else if (settings.genre) {
-        searchStrategies.push(
-          () => spotifyService.searchTracks(`${settings.genre} top hits popular`, 50),
-          () => spotifyService.searchTracks(`${settings.genre} greatest hits`, 50),
-          () => spotifyService.getRecommendations([settings.genre], 50)
-        );
+        tracks = await itunesService.getTracksByGenre(settings.genre, 50);
       } else {
-        searchStrategies.push(
-          () => spotifyService.searchTracks('top hits 2023 2024', 50),
-          () => spotifyService.searchTracks('popular songs charts', 50),
-          () => spotifyService.searchTracks('greatest hits all time', 50)
-        );
+        tracks = await itunesService.getPopularTracks(50);
       }
-
-      // Try each strategy until we find tracks with previews
-      for (const strategy of searchStrategies) {
-        tracks = await strategy();
-        const tracksWithPreviews = tracks.filter(track => track && track.preview_url);
-        if (tracksWithPreviews.length >= 5) {
-          console.log(`Found ${tracksWithPreviews.length} tracks with previews using this search strategy`);
-          break;
+      
+      // If iTunes doesn't return enough tracks, fallback to Spotify
+      if (tracks.length < 10) {
+        console.log(`iTunes returned ${tracks.length} tracks, trying Spotify as fallback...`);
+        let spotifyTracks = [];
+        
+        if (settings.decade) {
+          spotifyTracks = await spotifyService.getTracksByDecade(parseInt(settings.decade), 50);
+        } else if (settings.genre) {
+          spotifyTracks = await spotifyService.getRecommendations([settings.genre], 50);
+        } else {
+          spotifyTracks = await spotifyService.searchTracks('top hits 2023 2024', 50);
         }
-        console.log(`Search strategy yielded ${tracks.length} tracks, ${tracksWithPreviews.length} with previews - trying next strategy`);
+        
+        // Combine iTunes and Spotify results
+        tracks = [...tracks, ...spotifyTracks];
       }
 
       if (tracks.length === 0) {
