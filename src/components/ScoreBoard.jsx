@@ -1,0 +1,114 @@
+import { motion } from 'framer-motion';
+import { Trophy, RotateCcw, Star, Award } from 'lucide-react';
+
+const ScoreBoard = ({ score, totalQuestions, onRestart }) => {
+  const correctAnswers = Math.floor(score / 100);
+  const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+  
+  const getScoreMessage = () => {
+    if (percentage >= 90) return { message: "Outstanding! You're a music legend!", icon: Trophy, color: "gold" };
+    if (percentage >= 70) return { message: "Great job! You really know your music!", icon: Award, color: "silver" };
+    if (percentage >= 50) return { message: "Not bad! Keep listening and learning!", icon: Star, color: "bronze" };
+    return { message: "Keep practicing! Music knowledge takes time!", icon: Star, color: "participation" };
+  };
+
+  const scoreData = getScoreMessage();
+  const IconComponent = scoreData.icon;
+
+  return (
+    <motion.div 
+      className="score-card"
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="score-header">
+        <motion.div
+          className={`score-icon ${scoreData.color}`}
+          initial={{ rotate: -180 }}
+          animate={{ rotate: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          <IconComponent size={64} />
+        </motion.div>
+        
+        <motion.h2 
+          className="score-title"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+        >
+          Quiz Complete!
+        </motion.h2>
+        
+        <motion.p 
+          className="score-message"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7 }}
+        >
+          {scoreData.message}
+        </motion.p>
+      </div>
+
+      <div className="score-details">
+        <motion.div 
+          className="score-stat"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.9 }}
+        >
+          <span className="stat-label">Final Score</span>
+          <span className="stat-value">{score.toLocaleString()}</span>
+        </motion.div>
+        
+        <motion.div 
+          className="score-stat"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1.0 }}
+        >
+          <span className="stat-label">Correct Answers</span>
+          <span className="stat-value">{correctAnswers} / {totalQuestions}</span>
+        </motion.div>
+        
+        <motion.div 
+          className="score-stat"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1.1 }}
+        >
+          <span className="stat-label">Accuracy</span>
+          <span className="stat-value">{percentage}%</span>
+        </motion.div>
+      </div>
+
+      <div className="score-breakdown">
+        <div className="accuracy-bar">
+          <motion.div 
+            className="accuracy-fill"
+            initial={{ width: 0 }}
+            animate={{ width: `${percentage}%` }}
+            transition={{ duration: 1.5, delay: 1.3 }}
+          />
+        </div>
+        <span className="accuracy-text">{percentage}% Accuracy</span>
+      </div>
+
+      <motion.button
+        className="restart-button"
+        onClick={onRestart}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.5 }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <RotateCcw size={20} />
+        Play Again
+      </motion.button>
+    </motion.div>
+  );
+};
+
+export default ScoreBoard;
