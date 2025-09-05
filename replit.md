@@ -1,6 +1,6 @@
 # Overview
 
-A song quiz application built with React and Vite that integrates with the Spotify API to create music-based trivia games. The application allows users to play interactive quizzes featuring song previews, artist information, and multiple-choice questions. The frontend is styled with modern CSS animations using Framer Motion and provides a responsive, visually appealing interface with gradient backgrounds and smooth transitions.
+A comprehensive wellness application built with React and Vite that supports mental health through various interactive tools and games. Originally a music quiz app with Spotify integration, it has evolved into a complete mental wellness platform featuring therapeutic activities, crisis support, habit tracking, and emotional processing tools. The application provides a safe, supportive environment for users to engage with evidence-based mental health practices through an intuitive, beautifully designed interface.
 
 # User Preferences
 
@@ -27,9 +27,28 @@ Preferred communication style: Simple, everyday language.
 - **Token Management**: Automatic token refresh and caching within the SpotifyService class
 
 ## Component Structure
-- Modular React components for different quiz states and UI elements
+- Modular React components for different wellness activities and therapeutic tools
 - Separation of concerns with dedicated service layer for API interactions
-- Event-driven architecture for user interactions and quiz progression
+- Event-driven architecture for user interactions and wellness activity progression
+- Local storage integration for persistent user data (mood tracking, journal entries, habit progress)
+
+## Mental Health Features
+- **Crisis Support**: Emergency hotlines, immediate coping strategies, safety planning resources
+- **Therapeutic Journaling**: Guided writing prompts across 6 categories (gratitude, emotional processing, CBT, mindfulness, growth, relationships)
+- **Habit Tracker**: Daily wellness routine tracking with streak counters and progress analytics
+- **Mood Tracker**: Daily emotional check-ins with pattern recognition and insights
+- **Meditation Timer**: Guided meditation sessions (mindfulness, loving-kindness, body scan, gratitude)
+- **Breathing Exercises**: Visual breathing guides for anxiety and stress reduction
+- **Progressive Muscle Relaxation**: Guided tension release techniques
+- **Sleep Preparation**: Bedtime routine guidance for better sleep hygiene
+- **Daily Affirmations**: Positive mindset training and self-confidence building
+- **Color Therapy**: Art therapy and creative expression tools
+- **Memory Games**: Cognitive training and brain fitness activities
+- **Music Quiz**: Mood-lifting cognitive stimulation through music trivia
+- **Gratitude Practices**: Daily gratitude exercises and positive psychology tools
+- **Nature Sounds**: Ambient soundscapes for relaxation and meditation
+- **Couples Activities**: Relationship wellness and communication exercises
+- **Wellness Dashboard**: Progress tracking and insights across all activities
 
 # External Dependencies
 
@@ -55,3 +74,32 @@ Preferred communication style: Simple, everyday language.
 ## Environment Configuration
 - Environment variables for Spotify API credentials
 - Development server configured for external access (host: '0.0.0.0')
+- HTTPS-ready configuration for secure deployment
+- Local storage for persistent user data (client-side only)
+
+## Deployment Information
+
+### Ubuntu Server Deployment
+A comprehensive installation script (`ubuntu-install.sh`) is provided for production deployment on Ubuntu servers. The script includes:
+
+- **Automated Setup**: Node.js installation, app deployment, and NGINX configuration
+- **SSL/TLS Security**: Automatic Let's Encrypt certificate generation and renewal
+- **Security Hardening**: Firewall configuration, security headers, and access controls
+- **Performance Optimization**: Gzip compression, caching strategies, and asset optimization
+- **Monitoring & Maintenance**: Automated backups, log management, and update procedures
+- **Environment Management**: Secure environment variable configuration
+
+### Deployment Features
+- **Port Configuration**: Designed to work alongside existing applications (avoids port conflicts)
+- **Reverse Proxy**: NGINX configuration for serving static assets and handling HTTPS
+- **Domain Support**: Custom domain configuration with DNS management
+- **Auto-Renewal**: Automatic SSL certificate renewal via cron jobs
+- **Backup System**: Daily automated backups with retention management
+- **Update Process**: Streamlined update and rollback procedures
+
+### Installation Usage
+```bash
+./ubuntu-install.sh your-domain.com your-email@example.com
+```
+
+The script sets up a production-ready deployment with security best practices, performance optimizations, and automated maintenance tasks.

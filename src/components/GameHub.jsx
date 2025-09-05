@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Music, Heart, Brain, Palette, Users, Leaf, BookOpen, TrendingUp, Clock, Brush, BarChart3, Moon, Star, Zap } from 'lucide-react';
+import { Music, Heart, Brain, Palette, Users, Leaf, BookOpen, TrendingUp, Clock, Brush, BarChart3, Moon, Star, Zap, Shield, Target, PenTool } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import QuizGame from './QuizGame';
 import BreathingGame from './BreathingGame';
@@ -15,6 +15,9 @@ import WellnessDashboard from './WellnessDashboard';
 import ProgressiveMuscleRelaxation from './ProgressiveMuscleRelaxation';
 import SleepPreparation from './SleepPreparation';
 import AffirmationsGame from './AffirmationsGame';
+import CrisisSupport from './CrisisSupport';
+import JournalPrompts from './JournalPrompts';
+import HabitTracker from './HabitTracker';
 
 const GameHub = () => {
   const [activeGame, setActiveGame] = useState(null);
@@ -159,6 +162,36 @@ const GameHub = () => {
       description: 'Practice positive affirmations to rewire your mind and build self-confidence.',
       benefits: ['Positive thinking', 'Self-confidence', 'Mindset shift'],
       component: AffirmationsGame
+    },
+    {
+      id: 'crisis-support',
+      title: 'Crisis Support',
+      subtitle: 'Emergency mental health resources',
+      icon: Shield,
+      color: '#e53e3e',
+      description: 'Access crisis hotlines, immediate coping strategies, and safety resources when you need help most.',
+      benefits: ['Immediate help', 'Crisis resources', 'Safety planning'],
+      component: CrisisSupport
+    },
+    {
+      id: 'journaling',
+      title: 'Therapeutic Journaling',
+      subtitle: 'Guided writing prompts',
+      icon: PenTool,
+      color: '#805ad5',
+      description: 'Express your thoughts and process emotions through guided therapeutic writing exercises.',
+      benefits: ['Emotional processing', 'Self-reflection', 'CBT techniques'],
+      component: JournalPrompts
+    },
+    {
+      id: 'habit-tracker',
+      title: 'Habit Tracker',
+      subtitle: 'Daily wellness routines',
+      icon: Target,
+      color: '#38a169',
+      description: 'Build and track positive habits that support your mental health and overall wellbeing.',
+      benefits: ['Routine building', 'Progress tracking', 'Goal achievement'],
+      component: HabitTracker
     }
   ];
 
