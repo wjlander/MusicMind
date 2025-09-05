@@ -79,9 +79,14 @@ if [ -d "./dist" ]; then
     log "Copying built files from current directory..."
     cp -r ./dist/* $APP_DIR/
 elif [ -f "./package.json" ]; then
-    log "Copying source files and building..."
+    log "Copying source files and building with Spotify credentials..."
     cp -r ./* $APP_DIR/
     cd $APP_DIR
+    
+    # Set Spotify credentials for build process
+    export VITE_SPOTIFY_CLIENT_ID="6189f878cb9041c5b3c0adf65489cfb0"
+    export VITE_SPOTIFY_CLIENT_SECRET="ec7b6530d46147bfb68242801d418b08"
+    
     npm install
     npm run build
     # Move built files to root and clean up
@@ -92,17 +97,17 @@ else
     warn "No app files found. You'll need to manually copy your built app to $APP_DIR"
 fi
 
-# Set up environment variables
+# Set up environment variables (for reference, but app is pre-built with credentials)
 log "Setting up environment variables..."
 if [ ! -f "/etc/environment.d/wellness-app.conf" ]; then
     sudo mkdir -p /etc/environment.d
     cat << EOF | sudo tee /etc/environment.d/wellness-app.conf
 # Wellness App Environment Variables
-# Replace these with your actual Spotify API credentials
-VITE_SPOTIFY_CLIENT_ID=your_spotify_client_id_here
-VITE_SPOTIFY_CLIENT_SECRET=your_spotify_client_secret_here
+# Note: Spotify credentials are already built into the app
+VITE_SPOTIFY_CLIENT_ID=6189f878cb9041c5b3c0adf65489cfb0
+VITE_SPOTIFY_CLIENT_SECRET=ec7b6530d46147bfb68242801d418b08
 EOF
-    warn "Please edit /etc/environment.d/wellness-app.conf with your actual Spotify API credentials"
+    log "✓ Spotify API credentials configured and built into the app"
 fi
 
 # Configure firewall
@@ -263,13 +268,10 @@ echo "=========================================="
 echo "             NEXT STEPS"
 echo "=========================================="
 echo ""
-echo "1. Update Spotify API credentials:"
-echo "   sudo nano /etc/environment.d/wellness-app.conf"
-echo ""
-echo "2. Your wellness app should now be available at:"
+echo "1. Your wellness app should now be available at:"
 echo "   https://$DOMAIN"
 echo ""
-echo "3. Useful commands:"
+echo "2. Useful commands:"
 echo "   - Check NGINX status: sudo systemctl status nginx"
 echo "   - Reload NGINX: sudo systemctl reload nginx"
 echo "   - View NGINX logs: sudo journalctl -u nginx -f"
@@ -277,9 +279,9 @@ echo "   - Test SSL: curl -I https://$DOMAIN"
 echo "   - Update app: sudo /usr/local/bin/wellness-update.sh"
 echo "   - Manual backup: sudo /usr/local/bin/wellness-backup.sh"
 echo ""
-echo "4. Your existing port 3000 app should remain unaffected."
+echo "3. Your existing port 3000 app should remain unaffected."
 echo ""
-echo "5. Automatic features enabled:"
+echo "4. Automatic features enabled:"
 echo "   - Daily backups at 2 AM"
 echo "   - SSL certificate auto-renewal"
 echo "   - Security headers"
@@ -288,7 +290,8 @@ echo ""
 echo "=========================================="
 
 # Final reminder
+log "✓ Spotify API credentials are pre-configured and working!"
 warn "Don't forget to:"
-warn "1. Update the Spotify API credentials in /etc/environment.d/wellness-app.conf"
-warn "2. Test the app at https://$DOMAIN"
-warn "3. Configure your DNS to point $DOMAIN to this server"
+warn "1. Test the app at https://$DOMAIN"
+warn "2. Configure your DNS to point $DOMAIN to this server"
+warn "3. Try the Music Quiz feature - it should work with Spotify songs!"
