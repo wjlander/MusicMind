@@ -1,4 +1,4 @@
-modules = ["nodejs-20", "web"]
+modules = ["nodejs-20", "web", "bash"]
 [agent]
 expertMode = true
 
@@ -39,5 +39,5 @@ externalPort = 3000
 
 [deployment]
 deploymentTarget = "autoscale"
-run = ["npm", "run", "preview"]
+run = ["npx", "vite", "preview", "--host", "0.0.0.0", "--port", "5000"]
 build = ["npm", "run", "build"]
