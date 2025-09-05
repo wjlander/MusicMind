@@ -1,12 +1,11 @@
 import { useState } from 'react'
-import QuizGame from './components/QuizGame'
+import GameHub from './components/GameHub'
 import './App.css'
 
 function App() {
   return (
     <div className="app">
-      <h1>Music Quiz Challenge</h1>
-      <QuizGame />
+      <GameHub />
     </div>
   )
 }
