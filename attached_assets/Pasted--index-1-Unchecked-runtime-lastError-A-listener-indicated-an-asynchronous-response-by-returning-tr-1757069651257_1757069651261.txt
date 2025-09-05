@@ -1,0 +1,71 @@
+(index):1 Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+retailer.js:2 No messages from Iterable
+retailer.js:2 Error fetching messages from Iterable No messages from Iterable
+index-wJdRFJXi.js:282 Missing Spotify credentials
+getAccessToken @ index-wJdRFJXi.js:282
+index-wJdRFJXi.js:282 Error getting genre seeds: Error: Spotify API credentials not configured
+    at MN.getAccessToken (index-wJdRFJXi.js:282:76030)
+    at MN.getGenreSeeds (index-wJdRFJXi.js:282:76875)
+    at G (index-wJdRFJXi.js:282:85538)
+    at index-wJdRFJXi.js:282:85459
+    at Qi (index-wJdRFJXi.js:48:83631)
+    at Ff (index-wJdRFJXi.js:48:98326)
+    at Qt (index-wJdRFJXi.js:48:98210)
+    at Ff (index-wJdRFJXi.js:48:99062)
+    at Qt (index-wJdRFJXi.js:48:98210)
+    at Ff (index-wJdRFJXi.js:48:98306)
+getGenreSeeds @ index-wJdRFJXi.js:282
+index-wJdRFJXi.js:282 Missing Spotify credentials
+getAccessToken @ index-wJdRFJXi.js:282
+index-wJdRFJXi.js:282 Error getting recommendations: Error: Spotify API credentials not configured
+    at MN.getAccessToken (index-wJdRFJXi.js:282:76030)
+    at MN.getRecommendations (index-wJdRFJXi.js:282:77292)
+    at J (index-wJdRFJXi.js:282:85804)
+    at Ke (index-wJdRFJXi.js:282:87092)
+    at j (index-wJdRFJXi.js:282:83541)
+    at Am (index-wJdRFJXi.js:48:117292)
+    at index-wJdRFJXi.js:48:122406
+    at Od (index-wJdRFJXi.js:48:9041)
+    at xc (index-wJdRFJXi.js:48:118526)
+    at zc (index-wJdRFJXi.js:49:26676)
+getRecommendations @ index-wJdRFJXi.js:282
+index-wJdRFJXi.js:282 Error generating questions: Error: No tracks found for the selected criteria
+    at J (index-wJdRFJXi.js:282:85901)
+    at async Ke (index-wJdRFJXi.js:282:87086)
+J @ index-wJdRFJXi.js:282
+index-wJdRFJXi.js:282 Missing Spotify credentials
+getAccessToken @ index-wJdRFJXi.js:282
+index-wJdRFJXi.js:282 Error getting recommendations: Error: Spotify API credentials not configured
+    at MN.getAccessToken (index-wJdRFJXi.js:282:76030)
+    at MN.getRecommendations (index-wJdRFJXi.js:282:77292)
+    at J (index-wJdRFJXi.js:282:85804)
+    at Ke (index-wJdRFJXi.js:282:87092)
+    at j (index-wJdRFJXi.js:282:83541)
+    at Am (index-wJdRFJXi.js:48:117292)
+    at index-wJdRFJXi.js:48:122406
+    at Od (index-wJdRFJXi.js:48:9041)
+    at xc (index-wJdRFJXi.js:48:118526)
+    at zc (index-wJdRFJXi.js:49:26676)
+getRecommendations @ index-wJdRFJXi.js:282
+index-wJdRFJXi.js:282 Error generating questions: Error: No tracks found for the selected criteria
+    at J (index-wJdRFJXi.js:282:85901)
+    at async Ke (index-wJdRFJXi.js:282:87086)
+J @ index-wJdRFJXi.js:282
+index-wJdRFJXi.js:282 Missing Spotify credentials
+getAccessToken @ index-wJdRFJXi.js:282
+index-wJdRFJXi.js:282 Error getting tracks by decade: Error: Spotify API credentials not configured
+    at MN.getAccessToken (index-wJdRFJXi.js:282:76030)
+    at MN.getTracksByDecade (index-wJdRFJXi.js:282:77716)
+    at J (index-wJdRFJXi.js:282:85744)
+    at Ke (index-wJdRFJXi.js:282:87092)
+    at j (index-wJdRFJXi.js:282:83541)
+    at Am (index-wJdRFJXi.js:48:117292)
+    at index-wJdRFJXi.js:48:122406
+    at Od (index-wJdRFJXi.js:48:9041)
+    at xc (index-wJdRFJXi.js:48:118526)
+    at zc (index-wJdRFJXi.js:49:26676)
+getTracksByDecade @ index-wJdRFJXi.js:282
+index-wJdRFJXi.js:282 Error generating questions: Error: No tracks found for the selected criteria
+    at J (index-wJdRFJXi.js:282:85901)
+    at async Ke (index-wJdRFJXi.js:282:87086)
+J @ index-wJdRFJXi.js:282
