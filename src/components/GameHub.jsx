@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Music, Heart, Brain, Palette, Users, Leaf, BookOpen, TrendingUp, Clock, Brush } from 'lucide-react';
+import { Music, Heart, Brain, Palette, Users, Leaf, BookOpen, TrendingUp, Clock, Brush, BarChart3, Moon, Star, Zap } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import QuizGame from './QuizGame';
 import BreathingGame from './BreathingGame';
@@ -11,11 +11,25 @@ import MoodTracker from './MoodTracker';
 import MeditationTimer from './MeditationTimer';
 import ColorTherapy from './ColorTherapy';
 import CouplesActivity from './CouplesActivity';
+import WellnessDashboard from './WellnessDashboard';
+import ProgressiveMuscleRelaxation from './ProgressiveMuscleRelaxation';
+import SleepPreparation from './SleepPreparation';
+import AffirmationsGame from './AffirmationsGame';
 
 const GameHub = () => {
   const [activeGame, setActiveGame] = useState(null);
 
   const games = [
+    {
+      id: 'dashboard',
+      title: 'Wellness Dashboard',
+      subtitle: 'Track your wellness journey',
+      icon: BarChart3,
+      color: '#4299e1',
+      description: 'View your progress, achievements, and insights across all wellness activities.',
+      benefits: ['Progress tracking', 'Motivation boost', 'Self-awareness'],
+      component: WellnessDashboard
+    },
     {
       id: 'music-quiz',
       title: 'Music Quiz',
@@ -115,6 +129,36 @@ const GameHub = () => {
       description: 'Strengthen your relationship with guided activities for communication and connection.',
       benefits: ['Better communication', 'Stronger bond', 'Shared wellness'],
       component: CouplesActivity
+    },
+    {
+      id: 'progressive-relaxation',
+      title: 'Progressive Muscle Relaxation',
+      subtitle: 'Release physical tension',
+      icon: Zap,
+      color: '#48bb78',
+      description: 'Guided muscle relaxation technique to release tension and achieve deep physical relaxation.',
+      benefits: ['Physical tension release', 'Deep relaxation', 'Better sleep'],
+      component: ProgressiveMuscleRelaxation
+    },
+    {
+      id: 'sleep-preparation',
+      title: 'Sleep Preparation',
+      subtitle: 'Bedtime routine guide',
+      icon: Moon,
+      color: '#805ad5',
+      description: 'Step-by-step bedtime routine to prepare your mind and body for restful sleep.',
+      benefits: ['Better sleep quality', 'Relaxation routine', 'Sleep hygiene'],
+      component: SleepPreparation
+    },
+    {
+      id: 'affirmations',
+      title: 'Daily Affirmations',
+      subtitle: 'Positive mindset training',
+      icon: Star,
+      color: '#ffd93d',
+      description: 'Practice positive affirmations to rewire your mind and build self-confidence.',
+      benefits: ['Positive thinking', 'Self-confidence', 'Mindset shift'],
+      component: AffirmationsGame
     }
   ];
 
