@@ -12,6 +12,11 @@ class SpotifyService {
       return this.accessToken;
     }
 
+    if (!CLIENT_ID || !CLIENT_SECRET) {
+      console.error('Missing Spotify credentials');
+      throw new Error('Spotify API credentials not configured');
+    }
+
     try {
       const response = await fetch('https://accounts.spotify.com/api/token', {
         method: 'POST',
@@ -23,13 +28,16 @@ class SpotifyService {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to get access token');
+        const errorData = await response.text();
+        console.error('Spotify API error:', response.status, errorData);
+        throw new Error(`Failed to get access token: ${response.status}`);
       }
 
       const data = await response.json();
       this.accessToken = data.access_token;
       this.tokenExpiry = Date.now() + (data.expires_in * 1000);
       
+      console.log('Successfully obtained Spotify access token');
       return this.accessToken;
     } catch (error) {
       console.error('Error getting Spotify access token:', error);
