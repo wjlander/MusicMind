@@ -284,6 +284,13 @@ const QuizGame = () => {
         if (roundType === 'lightning') {
           setTimerActive(true);
         }
+        
+        // Reset audio for the new player
+        if (audio) {
+          audio.pause();
+          setIsPlaying(false);
+          setAudio(null);
+        }
       } else {
         // Single player: check for game end
         if (currentQuestion + 1 >= questions.length || lives - (isCorrect ? 0 : 1) <= 0) {
@@ -441,11 +448,13 @@ const QuizGame = () => {
 
       {question && (
         <QuestionCard
+          key={`${currentQuestion}-${currentPlayer}`}
           question={question}
           onAnswer={handleAnswer}
           onPlayPreview={playPreview}
           isPlaying={isPlaying}
           onTogglePlayPause={togglePlayPause}
+          currentPlayer={playerCount > 1 ? playerNames[currentPlayer] : null}
         />
       )}
     </div>
