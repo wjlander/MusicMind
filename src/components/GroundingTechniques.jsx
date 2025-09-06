@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Anchor, Eye, Ear, Hand, Nose, Coffee, CheckCircle, RotateCcw, Clock } from 'lucide-react';
+import { Anchor, Eye, Ear, Hand, Wind, Coffee, CheckCircle, RotateCcw, Clock } from 'lucide-react';
 
 const GroundingTechniques = () => {
   const [activeExercise, setActiveExercise] = useState(null);
@@ -48,7 +48,7 @@ const GroundingTechniques = () => {
           instruction: 'Identify 2 scents you can smell',
           detail: 'This might be your perfume, coffee, fresh air, or any subtle scents around you.',
           timer: 60,
-          icon: Nose
+          icon: Wind
         },
         {
           sense: 'taste',
@@ -100,7 +100,7 @@ const GroundingTechniques = () => {
           instruction: 'Focus on the physical sensation of breathing',
           detail: 'Feel the air entering and leaving your nostrils. Notice the rise and fall of your chest or belly.',
           timer: 90,
-          icon: Nose
+          icon: Wind
         }
       ]
     },
