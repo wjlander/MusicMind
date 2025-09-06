@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Music, Heart, Brain, Palette, Users, Leaf, BookOpen, TrendingUp, Clock, Brush, BarChart3, Moon, Star, Zap, Shield, Target, PenTool } from 'lucide-react';
+import { Music, Heart, Brain, Palette, Users, Leaf, BookOpen, TrendingUp, Clock, Brush, BarChart3, Moon, Star, Zap, Shield, Target, PenTool, MessageCircle, Activity, Anchor, Flame, Sprout, Trophy, Award, Wind } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import QuizGame from './QuizGame';
 import BreathingGame from './BreathingGame';
@@ -18,6 +18,28 @@ import AffirmationsGame from './AffirmationsGame';
 import CrisisSupport from './CrisisSupport';
 import JournalPrompts from './JournalPrompts';
 import HabitTracker from './HabitTracker';
+// CBT Tools
+import ThoughtRecord from './ThoughtRecord';
+import CognitiveDistortions from './CognitiveDistortions';
+import BehavioralActivation from './BehavioralActivation';
+// Physical Wellness
+import MindfulMovement from './MindfulMovement';
+import ExerciseMoodTracker from './ExerciseMoodTracker';
+import GroundingTechniques from './GroundingTechniques';
+// Social Features
+import EncouragementWall from './EncouragementWall';
+import WellnessBuddySystem from './WellnessBuddySystem';
+import CommunityChallenge from './CommunityChallenge';
+// Emergency Coping
+import EmergencyCopingToolkit from './EmergencyCopingToolkit';
+// Gamification
+import AchievementSystem from './AchievementSystem';
+import WellnessStreaks from './WellnessStreaks';
+import PersonalGrowthChallenges from './PersonalGrowthChallenges';
+// Educational Modules
+import MentalHealthMyths from './MentalHealthMyths';
+import EmotionRegulationSkills from './EmotionRegulationSkills';
+import StressScience from './StressScience';
 
 const GameHub = () => {
   const [activeGame, setActiveGame] = useState(null);
@@ -192,6 +214,172 @@ const GameHub = () => {
       description: 'Build and track positive habits that support your mental health and overall wellbeing.',
       benefits: ['Routine building', 'Progress tracking', 'Goal achievement'],
       component: HabitTracker
+    },
+    // CBT Tools
+    {
+      id: 'thought-record',
+      title: 'Thought Record',
+      subtitle: 'Challenge negative thinking',
+      icon: Brain,
+      color: '#4299e1',
+      description: 'Examine and challenge negative thought patterns using evidence-based CBT techniques.',
+      benefits: ['Cognitive restructuring', 'Mood improvement', 'Self-awareness'],
+      component: ThoughtRecord
+    },
+    {
+      id: 'cognitive-distortions',
+      title: 'Cognitive Distortion Detective',
+      subtitle: 'Identify thinking traps',
+      icon: Brain,
+      color: '#9f7aea',
+      description: 'Learn to recognize and correct common cognitive distortions that impact mood and behavior.',
+      benefits: ['Better thinking patterns', 'Reduced anxiety', 'Clearer perspective'],
+      component: CognitiveDistortions
+    },
+    {
+      id: 'behavioral-activation',
+      title: 'Behavioral Activation',
+      subtitle: 'Action-based mood lifting',
+      icon: Zap,
+      color: '#48bb78',
+      description: 'Plan meaningful activities to combat depression and improve mood through positive action.',
+      benefits: ['Increased motivation', 'Mood enhancement', 'Activity planning'],
+      component: BehavioralActivation
+    },
+    // Physical Wellness
+    {
+      id: 'mindful-movement',
+      title: 'Mindful Movement',
+      subtitle: 'Gentle exercise routines',
+      icon: Activity,
+      color: '#ed8936',
+      description: 'Combine physical movement with mindfulness for stress relief and body awareness.',
+      benefits: ['Stress relief', 'Body awareness', 'Gentle exercise'],
+      component: MindfulMovement
+    },
+    {
+      id: 'exercise-mood',
+      title: 'Exercise-Mood Tracker',
+      subtitle: 'Track activity and feelings',
+      icon: Activity,
+      color: '#38a169',
+      description: 'Discover how physical activity affects your mood and build motivation for movement.',
+      benefits: ['Exercise motivation', 'Mood tracking', 'Pattern recognition'],
+      component: ExerciseMoodTracker
+    },
+    {
+      id: 'grounding',
+      title: 'Grounding Techniques',
+      subtitle: 'Present moment awareness',
+      icon: Anchor,
+      color: '#805ad5',
+      description: 'Use your senses to anchor yourself in the present moment during anxiety or overwhelm.',
+      benefits: ['Anxiety relief', 'Present awareness', 'Emotional grounding'],
+      component: GroundingTechniques
+    },
+    // Social Features
+    {
+      id: 'encouragement-wall',
+      title: 'Encouragement Wall',
+      subtitle: 'Community support messages',
+      icon: MessageCircle,
+      color: '#ed64a6',
+      description: 'Share and receive anonymous encouragement messages from the wellness community.',
+      benefits: ['Community support', 'Positive messaging', 'Connection'],
+      component: EncouragementWall
+    },
+    {
+      id: 'wellness-buddy',
+      title: 'Wellness Buddy System',
+      subtitle: 'Accountability partnership',
+      icon: Users,
+      color: '#4299e1',
+      description: 'Partner with someone for mutual support and accountability in your wellness journey.',
+      benefits: ['Accountability', 'Motivation', 'Shared goals'],
+      component: WellnessBuddySystem
+    },
+    {
+      id: 'community-challenge',
+      title: 'Community Challenges',
+      subtitle: 'Group wellness goals',
+      icon: Trophy,
+      color: '#d69e2e',
+      description: 'Join wellness challenges with the community to build healthy habits together.',
+      benefits: ['Group motivation', 'Habit building', 'Achievement'],
+      component: CommunityChallenge
+    },
+    // Emergency Coping
+    {
+      id: 'emergency-coping',
+      title: 'Emergency Coping Toolkit',
+      subtitle: 'Crisis intervention tools',
+      icon: Shield,
+      color: '#e53e3e',
+      description: 'Quick relief techniques for intense emotions, panic attacks, and overwhelming moments.',
+      benefits: ['Crisis management', 'Immediate relief', 'Emotional regulation'],
+      component: EmergencyCopingToolkit
+    },
+    // Gamification
+    {
+      id: 'achievements',
+      title: 'Achievement System',
+      subtitle: 'Track your progress',
+      icon: Award,
+      color: '#ffd93d',
+      description: 'Earn achievements and celebrate milestones in your wellness journey.',
+      benefits: ['Motivation', 'Progress tracking', 'Goal celebration'],
+      component: AchievementSystem
+    },
+    {
+      id: 'wellness-streaks',
+      title: 'Wellness Streaks',
+      subtitle: 'Build consistency',
+      icon: Flame,
+      color: '#ff6b6b',
+      description: 'Build and maintain wellness streaks to develop consistent healthy habits.',
+      benefits: ['Habit consistency', 'Motivation', 'Progress visualization'],
+      component: WellnessStreaks
+    },
+    {
+      id: 'growth-challenges',
+      title: 'Personal Growth Challenges',
+      subtitle: 'Transform through practice',
+      icon: Sprout,
+      color: '#51cf66',
+      description: 'Take on structured challenges designed to promote personal growth and self-discovery.',
+      benefits: ['Personal growth', 'Self-discovery', 'Skill building'],
+      component: PersonalGrowthChallenges
+    },
+    // Educational Modules
+    {
+      id: 'mental-health-myths',
+      title: 'Mental Health: Myths vs Facts',
+      subtitle: 'Learn the truth',
+      icon: Brain,
+      color: '#339af0',
+      description: 'Challenge misconceptions and learn evidence-based facts about mental health.',
+      benefits: ['Education', 'Stigma reduction', 'Awareness'],
+      component: MentalHealthMyths
+    },
+    {
+      id: 'emotion-regulation',
+      title: 'Emotion Regulation Skills',
+      subtitle: 'Master your emotions',
+      icon: Heart,
+      color: '#f06595',
+      description: 'Learn evidence-based techniques to understand and manage intense emotions effectively.',
+      benefits: ['Emotional control', 'Coping skills', 'Self-regulation'],
+      component: EmotionRegulationSkills
+    },
+    {
+      id: 'stress-science',
+      title: 'The Science of Stress',
+      subtitle: 'Understand stress responses',
+      icon: Zap,
+      color: '#fd7e14',
+      description: 'Learn how stress works in your body and brain, plus evidence-based management strategies.',
+      benefits: ['Stress understanding', 'Science education', 'Management strategies'],
+      component: StressScience
     }
   ];
 
@@ -223,8 +411,8 @@ const GameHub = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h1>Wellness Game Collection</h1>
-        <p>Choose from a variety of games designed to support mental health and wellbeing</p>
+        <h1>Comprehensive Wellness Platform</h1>
+        <p>Explore 30+ evidence-based tools for mental health, physical wellness, and personal growth</p>
       </motion.div>
 
       <motion.div 
