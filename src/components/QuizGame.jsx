@@ -66,6 +66,25 @@ const QuizGame = () => {
     handleAnswer(null);
   };
 
+  const stopAllAudio = () => {
+    // Stop and clear the main audio object
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+      audio.src = '';
+      setIsPlaying(false);
+      setAudio(null);
+    }
+    
+    // Stop any other audio elements that might be playing
+    const allAudioElements = document.querySelectorAll('audio');
+    allAudioElements.forEach(audioEl => {
+      audioEl.pause();
+      audioEl.currentTime = 0;
+      audioEl.src = '';
+    });
+  };
+
   const loadGenres = async () => {
     try {
       // Use iTunes available genres (no API call needed)
@@ -239,14 +258,8 @@ const QuizGame = () => {
     // Stop timer
     setTimerActive(false);
     
-    // Immediately stop and clear current audio
-    if (audio) {
-      audio.pause();
-      audio.currentTime = 0;
-      audio.src = '';
-      setIsPlaying(false);
-      setAudio(null);
-    }
+    // Immediately stop and clear ALL audio
+    stopAllAudio();
     
     // Update current player's score
     if (isCorrect) {
@@ -286,7 +299,10 @@ const QuizGame = () => {
           setTimerActive(true);
         }
         
-        // Audio is already cleared above, no need to reset again
+        // Ensure no audio plays during transition
+        setTimeout(() => {
+          stopAllAudio();
+        }, 50);
       } else {
         // Single player: check for game end
         if (currentQuestion + 1 >= questions.length || lives - (isCorrect ? 0 : 1) <= 0) {
@@ -304,19 +320,21 @@ const QuizGame = () => {
   };
 
   const playPreview = (previewUrl) => {
-    if (audio) {
-      audio.pause();
-    }
-
+    // First stop all existing audio
+    stopAllAudio();
+    
     if (previewUrl) {
-      const newAudio = new Audio(previewUrl);
-      newAudio.play();
-      setAudio(newAudio);
-      setIsPlaying(true);
-      
-      newAudio.onended = () => {
-        setIsPlaying(false);
-      };
+      // Add a small delay to ensure old audio is completely stopped
+      setTimeout(() => {
+        const newAudio = new Audio(previewUrl);
+        newAudio.play().catch(console.error);
+        setAudio(newAudio);
+        setIsPlaying(true);
+        
+        newAudio.onended = () => {
+          setIsPlaying(false);
+        };
+      }, 100);
     }
   };
 
