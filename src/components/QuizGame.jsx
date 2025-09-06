@@ -263,23 +263,21 @@ const QuizGame = () => {
     // Move to next question/player after a short delay
     setTimeout(() => {
       if (playerCount > 1) {
-        // Multiplayer: move to next player
+        // Multiplayer: each player gets a different question
         const nextPlayer = (currentPlayer + 1) % playerCount;
         console.log(`Switching from player ${currentPlayer} (${playerNames[currentPlayer]}) to player ${nextPlayer} (${playerNames[nextPlayer]})`);
         setCurrentPlayer(nextPlayer);
         
-        // If we've cycled through all players, move to next question
-        if (nextPlayer === 0) {
-          if (currentQuestion + 1 >= questions.length) {
-            setGameState('finished');
-            return;
-          } else {
-            setCurrentQuestion(prev => prev + 1);
-            console.log(`Moving to question ${currentQuestion + 2}`);
-          }
+        // Always move to the next question in multiplayer (each player gets different questions)
+        if (currentQuestion + 1 >= questions.length) {
+          setGameState('finished');
+          return;
+        } else {
+          setCurrentQuestion(prev => prev + 1);
+          console.log(`Moving to question ${currentQuestion + 2} for ${playerNames[nextPlayer]}`);
         }
         
-        // Reset timer for next player (all multiplayer rounds have some form of timer)
+        // Reset timer for next player 
         setTimeLeft(timeLimit);
         if (roundType === 'lightning') {
           setTimerActive(true);
