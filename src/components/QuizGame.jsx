@@ -20,6 +20,17 @@ const QuizGame = () => {
   const [availableGenres, setAvailableGenres] = useState([]);
   const [audio, setAudio] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  
+  // Multiplayer state
+  const [playerCount, setPlayerCount] = useState(1);
+  const [playerNames, setPlayerNames] = useState(['Player 1']);
+  const [playerScores, setPlayerScores] = useState([0]);
+  const [currentPlayer, setCurrentPlayer] = useState(0);
+  const [roundType, setRoundType] = useState('standard');
+  const [questionCount, setQuestionCount] = useState(10);
+  const [timeLimit, setTimeLimit] = useState(30);
+  const [timeLeft, setTimeLeft] = useState(30);
+  const [timerActive, setTimerActive] = useState(false);
 
   useEffect(() => {
     // Load available genres on component mount
@@ -32,6 +43,21 @@ const QuizGame = () => {
       }
     };
   }, [audio]);
+
+  // Timer effect for timed rounds
+  useEffect(() => {
+    let timer;
+    if (timerActive && timeLeft > 0) {
+      timer = setTimeout(() => {
+        setTimeLeft(prev => prev - 1);
+      }, 1000);
+    } else if (timeLeft === 0 && timerActive) {
+      // Time's up! Move to next player or question
+      handleAnswer(null); // null represents no answer (timeout)
+    }
+    
+    return () => clearTimeout(timer);
+  }, [timerActive, timeLeft]);
 
   const loadGenres = async () => {
     try {
@@ -95,8 +121,8 @@ const QuizGame = () => {
         throw new Error('No valid tracks found for the selected criteria');
       }
 
-      // Take up to 10 tracks for the quiz
-      const numQuestions = Math.min(10, finalTracks.length);
+      // Take tracks based on round type
+      const numQuestions = Math.min(questionCount, finalTracks.length);
       const shuffledTracks = finalTracks.sort(() => Math.random() - 0.5).slice(0, numQuestions);
       
       // Let user know if playing without audio
@@ -175,21 +201,49 @@ const QuizGame = () => {
     setGameMode(settings.gameMode);
     setGenre(settings.genre);
     setDecade(settings.decade);
+    setPlayerCount(settings.playerCount);
+    setPlayerNames(settings.playerNames);
+    setRoundType(settings.roundType);
+    setQuestionCount(settings.questionCount);
+    setTimeLimit(settings.timeLimit);
+    setTimeLeft(settings.timeLimit);
+    
+    // Initialize player scores
+    setPlayerScores(new Array(settings.playerCount).fill(0));
+    setCurrentPlayer(0);
+    
     setGameState('playing');
     setCurrentQuestion(0);
     setScore(0);
     setLives(3);
+    
+    // Start timer for timed rounds
+    if (settings.roundType === 'lightning') {
+      setTimerActive(true);
+    }
     
     await generateQuestions(settings);
   };
 
   const handleAnswer = (selectedAnswer) => {
     const question = questions[currentQuestion];
-    const isCorrect = selectedAnswer === question.correctAnswer;
+    const isCorrect = selectedAnswer && selectedAnswer === question.correctAnswer;
     
+    // Stop timer
+    setTimerActive(false);
+    
+    // Update current player's score
     if (isCorrect) {
-      setScore(prev => prev + 100);
-    } else {
+      const newScores = [...playerScores];
+      newScores[currentPlayer] += 100;
+      setPlayerScores(newScores);
+      
+      // For single player, also update main score
+      if (playerCount === 1) {
+        setScore(prev => prev + 100);
+      }
+    } else if (playerCount === 1) {
+      // Only use lives system in single player
       setLives(prev => prev - 1);
     }
 
@@ -199,12 +253,40 @@ const QuizGame = () => {
       setIsPlaying(false);
     }
 
-    // Move to next question after a short delay
+    // Move to next question/player after a short delay
     setTimeout(() => {
-      if (currentQuestion + 1 >= questions.length || lives - (isCorrect ? 0 : 1) <= 0) {
-        setGameState('finished');
+      if (playerCount > 1) {
+        // Multiplayer: move to next player
+        const nextPlayer = (currentPlayer + 1) % playerCount;
+        setCurrentPlayer(nextPlayer);
+        
+        // If we've cycled through all players, move to next question
+        if (nextPlayer === 0) {
+          if (currentQuestion + 1 >= questions.length) {
+            setGameState('finished');
+            return;
+          } else {
+            setCurrentQuestion(prev => prev + 1);
+          }
+        }
+        
+        // Reset timer for next player
+        if (roundType === 'lightning') {
+          setTimeLeft(timeLimit);
+          setTimerActive(true);
+        }
       } else {
-        setCurrentQuestion(prev => prev + 1);
+        // Single player: check for game end
+        if (currentQuestion + 1 >= questions.length || lives - (isCorrect ? 0 : 1) <= 0) {
+          setGameState('finished');
+        } else {
+          setCurrentQuestion(prev => prev + 1);
+          // Reset timer for next question
+          if (roundType === 'lightning') {
+            setTimeLeft(timeLimit);
+            setTimerActive(true);
+          }
+        }
       }
     }, 1500);
   };
@@ -250,6 +332,10 @@ const QuizGame = () => {
     setLives(3);
     setIsPlaying(false);
     setAudio(null);
+    setTimerActive(false);
+    setCurrentPlayer(0);
+    setPlayerScores([0]);
+    setTimeLeft(30);
   };
 
   if (gameState === 'menu') {
@@ -283,6 +369,10 @@ const QuizGame = () => {
           score={score}
           totalQuestions={questions.length}
           onRestart={resetGame}
+          playerCount={playerCount}
+          playerNames={playerNames}
+          playerScores={playerScores}
+          roundType={roundType}
         />
       </div>
     );
@@ -307,13 +397,37 @@ const QuizGame = () => {
       <div className="game-header">
         <div className="game-info">
           <span>Question {currentQuestion + 1} of {questions.length}</span>
-          <div className="lives">
-            {Array.from({ length: 3 }, (_, i) => (
-              <div key={i} className={`life ${i < lives ? 'active' : ''}`}>❤️</div>
+          {playerCount === 1 && (
+            <div className="lives">
+              {Array.from({ length: 3 }, (_, i) => (
+                <div key={i} className={`life ${i < lives ? 'active' : ''}`}>❤️</div>
+              ))}
+            </div>
+          )}
+          {playerCount > 1 && (
+            <div className="current-player">
+              <span>{playerNames[currentPlayer]}'s Turn</span>
+            </div>
+          )}
+          {roundType === 'lightning' && (
+            <div className={`timer ${timeLeft <= 5 ? 'warning' : ''}`}>
+              ⏱️ {timeLeft}s
+            </div>
+          )}
+        </div>
+        
+        {playerCount === 1 ? (
+          <div className="score">Score: {score}</div>
+        ) : (
+          <div className="multiplayer-scores">
+            {playerNames.map((name, index) => (
+              <div key={index} className={`player-score ${index === currentPlayer ? 'active' : ''}`}>
+                <span className="player-name">{name}</span>
+                <span className="player-points">{playerScores[index]}</span>
+              </div>
             ))}
           </div>
-        </div>
-        <div className="score">Score: {score}</div>
+        )}
       </div>
 
       {question && (

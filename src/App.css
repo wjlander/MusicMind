@@ -120,6 +120,218 @@ body {
   gap: 2rem;
 }
 
+.player-selector {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.player-button {
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.player-button:hover {
+  border-color: var(--accent-primary);
+  background: var(--accent-primary);
+  color: white;
+}
+
+.player-button.active {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: white;
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+.player-names-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.player-name-input {
+  padding: 12px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.player-name-input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Multiplayer Game UI */
+.current-player {
+  background: var(--accent-primary);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.timer {
+  background: var(--accent-secondary);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  min-width: 60px;
+  text-align: center;
+}
+
+.timer.warning {
+  background: var(--accent-danger);
+  animation: pulse 0.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.multiplayer-scores {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.player-score {
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+  transition: all 0.3s ease;
+}
+
+.player-score.active {
+  border-color: var(--accent-primary);
+  background: var(--accent-primary);
+  color: white;
+  transform: scale(1.05);
+}
+
+.player-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.player-points {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Multiplayer Results */
+.multiplayer-results {
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.multiplayer-results h3 {
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.player-result {
+  display: flex;
+  align-items: center;
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.player-result.winner {
+  border-color: #ffd700;
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4a 100%);
+  color: #1a1a1a;
+  transform: scale(1.02);
+}
+
+.result-position {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  margin-right: 1rem;
+  min-width: 40px;
+}
+
+.player-result.winner .result-position {
+  color: #d69e2e;
+}
+
+.result-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.result-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.player-result.winner .result-name {
+  color: #1a1a1a;
+}
+
+.result-score {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--accent-primary);
+}
+
+.player-result.winner .result-score {
+  color: #d69e2e;
+}
+
+.result-correct {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.player-result.winner .result-correct {
+  color: #8b6914;
+}
+
+.winner-trophy {
+  color: #d69e2e;
+  margin-left: 1rem;
+}
+
 .settings-section h3 {
   color: #1a1a1a;
   margin-bottom: 1rem;
