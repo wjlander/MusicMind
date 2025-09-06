@@ -53,11 +53,18 @@ const QuizGame = () => {
       }, 1000);
     } else if (timeLeft === 0 && timerActive) {
       // Time's up! Move to next player or question
-      handleAnswer(null); // null represents no answer (timeout)
+      setTimerActive(false);
+      // Call timeout handler with current values
+      handleTimeOut();
     }
     
     return () => clearTimeout(timer);
   }, [timerActive, timeLeft]);
+
+  const handleTimeOut = () => {
+    // Handle timeout with current state values
+    handleAnswer(null);
+  };
 
   const loadGenres = async () => {
     try {
@@ -258,6 +265,7 @@ const QuizGame = () => {
       if (playerCount > 1) {
         // Multiplayer: move to next player
         const nextPlayer = (currentPlayer + 1) % playerCount;
+        console.log(`Switching from player ${currentPlayer} (${playerNames[currentPlayer]}) to player ${nextPlayer} (${playerNames[nextPlayer]})`);
         setCurrentPlayer(nextPlayer);
         
         // If we've cycled through all players, move to next question
@@ -267,12 +275,13 @@ const QuizGame = () => {
             return;
           } else {
             setCurrentQuestion(prev => prev + 1);
+            console.log(`Moving to question ${currentQuestion + 2}`);
           }
         }
         
-        // Reset timer for next player
+        // Reset timer for next player (all multiplayer rounds have some form of timer)
+        setTimeLeft(timeLimit);
         if (roundType === 'lightning') {
-          setTimeLeft(timeLimit);
           setTimerActive(true);
         }
       } else {
@@ -282,8 +291,8 @@ const QuizGame = () => {
         } else {
           setCurrentQuestion(prev => prev + 1);
           // Reset timer for next question
+          setTimeLeft(timeLimit);
           if (roundType === 'lightning') {
-            setTimeLeft(timeLimit);
             setTimerActive(true);
           }
         }
@@ -406,7 +415,7 @@ const QuizGame = () => {
           )}
           {playerCount > 1 && (
             <div className="current-player">
-              <span>{playerNames[currentPlayer]}'s Turn</span>
+              <span>👤 {playerNames[currentPlayer]}'s Turn</span>
             </div>
           )}
           {roundType === 'lightning' && (
