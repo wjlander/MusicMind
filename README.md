@@ -1,3 +1,6 @@
+# SSL Certificate Issues
+After running ubuntu-install.sh then run fix-nginx-recovery.sh to fix ssl issues.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
