@@ -239,6 +239,15 @@ const QuizGame = () => {
     // Stop timer
     setTimerActive(false);
     
+    // Immediately stop and clear current audio
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+      audio.src = '';
+      setIsPlaying(false);
+      setAudio(null);
+    }
+    
     // Update current player's score
     if (isCorrect) {
       const newScores = [...playerScores];
@@ -252,12 +261,6 @@ const QuizGame = () => {
     } else if (playerCount === 1) {
       // Only use lives system in single player
       setLives(prev => prev - 1);
-    }
-
-    // Stop current audio
-    if (audio) {
-      audio.pause();
-      setIsPlaying(false);
     }
 
     // Move to next question/player after a short delay
@@ -283,12 +286,7 @@ const QuizGame = () => {
           setTimerActive(true);
         }
         
-        // Reset audio for the new player
-        if (audio) {
-          audio.pause();
-          setIsPlaying(false);
-          setAudio(null);
-        }
+        // Audio is already cleared above, no need to reset again
       } else {
         // Single player: check for game end
         if (currentQuestion + 1 >= questions.length || lives - (isCorrect ? 0 : 1) <= 0) {
