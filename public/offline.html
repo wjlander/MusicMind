@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Wellness App</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .offline-container {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .offline-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 32px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .message {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+            opacity: 0.9;
+        }
+
+        .available-tools {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .available-tools h2 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .tool-list {
+            list-style: none;
+            display: grid;
+            gap: 8px;
+        }
+
+        .tool-list li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .tool-list li::before {
+            content: '•';
+            color: #48bb78;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .reconnect-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .reconnect-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .offline-note {
+            margin-top: 24px;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 480px) {
+            .offline-container {
+                padding: 0 16px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .available-tools {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">
+            🌐
+        </div>
+        
+        <h1>You're Offline</h1>
+        
+        <p class="message">
+            Don't worry! Many wellness tools still work without an internet connection. 
+            Your progress is safely stored and will sync when you're back online.
+        </p>
+        
+        <div class="available-tools">
+            <h2>Available Offline Tools</h2>
+            <ul class="tool-list">
+                <li>Mood tracking and journaling</li>
+                <li>Breathing exercises and timers</li>
+                <li>Meditation and mindfulness</li>
+                <li>Gratitude practice</li>
+                <li>Progressive muscle relaxation</li>
+                <li>Grounding techniques</li>
+                <li>Emergency coping toolkit</li>
+                <li>View your progress and insights</li>
+            </ul>
+        </div>
+        
+        <a href="/" class="reconnect-button">
+            Try to Reconnect
+        </a>
+        
+        <p class="offline-note">
+            Your data will automatically sync when you're back online.
+        </p>
+    </div>
+    
+    <script>
+        // Listen for online event to automatically redirect
+        window.addEventListener('online', () => {
+            window.location.href = '/';
+        });
+        
+        // Update connection status
+        function updateConnectionStatus() {
+            if (navigator.onLine) {
+                window.location.href = '/';
+            }
+        }
+        
+        // Check connection every 5 seconds
+        setInterval(updateConnectionStatus, 5000);
+    </script>
+</body>
+</html>
